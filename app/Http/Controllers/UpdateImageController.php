@@ -19,17 +19,22 @@ class UpdateImageController extends Controller
         $image = $request->image;
 
         $image_Path = Storage::disk('public')->putFile('images', $image);
-        $tessereact = new TesseractOCR(public_path("storage/$image_Path"));
+        $fullUrl = "http://localhost:8000/storage/$image_Path";
+        $tessereact = new TesseractOCR(public_path("storage/$image_Path"));        
+        $tessereact->lang('fra' , 'eng' , 'ara');
 
         $text = $tessereact->run();
-        return response([
+        /*return response([
+            "fullUrl"=>$fullUrl,
             "text"=>$text
-            ], Response::HTTP_OK);
+            ], Response::HTTP_OK);*/
+            return redirect()->back()->with('text',$text);
     }
 
 
     public function index(Request $request){
        
-        return "salam w khlass";
+        //return "salam w khlass";
+        return view('extract');
     }
 }

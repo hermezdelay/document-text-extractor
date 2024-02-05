@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 use \App\Http\Controllers\HomeController;
+use \App\Http\Controllers\UpdateImageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,9 +17,13 @@ use \App\Http\Controllers\HomeController;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('welcome');
 });
 
-Route::get('/',[HomeController::class,'index']);
+Route::get('/upload',[HomeController::class,'index']);
 
 Route::post('/upload',[HomeController::class,'upload'])->name('upload');
+
+
+Route::get('api/upload_image', [UpdateImageController::class,'index']);
+Route::post('api/upload_image', [UpdateImageController::class,'upload']);

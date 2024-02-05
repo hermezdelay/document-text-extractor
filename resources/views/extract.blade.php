@@ -12,13 +12,9 @@
 
                     <div style="padding-top:30px" class="panel-body" >
 
-                        @if(Session::has('text'))                                       
-                        <img src="{{Session::get('fullUrl')}}" alt="votre image ici">
-                        @endif
-
                         <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
                             
-                        <form method="post" action="{{route('upload')}}"  enctype="multipart/form-data" class="form-horizontal" role="form">
+                        <form method="post" action="http://localhost:8000/api/upload_image"  enctype="multipart/form-data" class="form-horizontal" role="form">
                                     @csrf
                             <div style="margin-bottom: 25px" class="input-group">
                        <input type="file" name="image" />                                     
